@@ -8,7 +8,7 @@ import CartItem from "./CartItem.tsx";
 import Coupon from "./Coupon.tsx";
 
 const CHECKOUT_URL =
-  "https://bravtexfashionstore.vtexcommercestable.com.br/checkout";
+  "https://lojasafubra.vtexcommercestable.com.br/checkout";
 
 function Cart() {
   const { displayCart } = useUI();
@@ -88,7 +88,7 @@ function Cart() {
           <a
             class="inline-block w-full"
             target="_blank"
-            href={`${CHECKOUT_URL}?orderFormId=${cart.value!.orderFormId}`}
+            href={`${CHECKOUT_URL}?orderFormId=${cart.value!.orderFormId}&teste='teste'`}
           >
             <Button
               class="w-full"
