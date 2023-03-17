@@ -46,13 +46,15 @@ import * as $$$$6 from "deco-sites/std/functions/occProductDetailsPage.ts";
 import * as $$$$7 from "deco-sites/std/functions/shopifyProductDetailsPage.ts";
 import * as $$$$8 from "deco-sites/std/functions/shopifyProductList.ts";
 import * as $$$$9 from "deco-sites/std/functions/shopifyProductListingPage.ts";
-import * as $$$$10 from "deco-sites/std/functions/vtexLegacyProductDetailsPage.ts";
-import * as $$$$11 from "deco-sites/std/functions/vtexLegacyProductList.ts";
-import * as $$$$12 from "deco-sites/std/functions/vtexLegacyProductListingPage.ts";
-import * as $$$$13 from "deco-sites/std/functions/vtexProductDetailsPage.ts";
-import * as $$$$14 from "deco-sites/std/functions/vtexProductList.ts";
-import * as $$$$15 from "deco-sites/std/functions/vtexProductListingPage.ts";
-import * as $$$$16 from "deco-sites/std/functions/vtexSuggestions.ts";
+import * as $$$$10 from "deco-sites/std/functions/vtexCategoryTree.ts";
+import * as $$$$11 from "deco-sites/std/functions/vtexConfig.ts";
+import * as $$$$12 from "deco-sites/std/functions/vtexLegacyProductDetailsPage.ts";
+import * as $$$$13 from "deco-sites/std/functions/vtexLegacyProductList.ts";
+import * as $$$$14 from "deco-sites/std/functions/vtexLegacyProductListingPage.ts";
+import * as $$$$15 from "deco-sites/std/functions/vtexProductDetailsPage.ts";
+import * as $$$$16 from "deco-sites/std/functions/vtexProductList.ts";
+import * as $$$$17 from "deco-sites/std/functions/vtexProductListingPage.ts";
+import * as $$$$18 from "deco-sites/std/functions/vtexSuggestions.ts";
 
 const manifest: DecoManifest = {
   routes: {
@@ -103,13 +105,15 @@ const manifest: DecoManifest = {
     "deco-sites/std/functions/shopifyProductDetailsPage.ts": $$$$7,
     "deco-sites/std/functions/shopifyProductList.ts": $$$$8,
     "deco-sites/std/functions/shopifyProductListingPage.ts": $$$$9,
-    "deco-sites/std/functions/vtexLegacyProductDetailsPage.ts": $$$$10,
-    "deco-sites/std/functions/vtexLegacyProductList.ts": $$$$11,
-    "deco-sites/std/functions/vtexLegacyProductListingPage.ts": $$$$12,
-    "deco-sites/std/functions/vtexProductDetailsPage.ts": $$$$13,
-    "deco-sites/std/functions/vtexProductList.ts": $$$$14,
-    "deco-sites/std/functions/vtexProductListingPage.ts": $$$$15,
-    "deco-sites/std/functions/vtexSuggestions.ts": $$$$16,
+    "deco-sites/std/functions/vtexCategoryTree.ts": $$$$10,
+    "deco-sites/std/functions/vtexConfig.ts": $$$$11,
+    "deco-sites/std/functions/vtexLegacyProductDetailsPage.ts": $$$$12,
+    "deco-sites/std/functions/vtexLegacyProductList.ts": $$$$13,
+    "deco-sites/std/functions/vtexLegacyProductListingPage.ts": $$$$14,
+    "deco-sites/std/functions/vtexProductDetailsPage.ts": $$$$15,
+    "deco-sites/std/functions/vtexProductList.ts": $$$$16,
+    "deco-sites/std/functions/vtexProductListingPage.ts": $$$$17,
+    "deco-sites/std/functions/vtexSuggestions.ts": $$$$18,
   },
   schemas: {
     "./sections/AutoHeader.tsx": {
@@ -117,6 +121,19 @@ const manifest: DecoManifest = {
         "title": " Auto Header",
         "type": "object",
         "properties": {
+          "categories": {
+            "$id": "e7e597ea99f8e50061968a0ac8629b1537357428",
+            "format": "live-function",
+            "type": "string",
+            "title": "Categories",
+          },
+          "showAllCategories": {
+            "type": [
+              "boolean",
+              "null",
+            ],
+            "title": "Show All Categories",
+          },
           "imageLogo": {
             "format": "image-uri",
             "type": "string",
@@ -228,6 +245,7 @@ const manifest: DecoManifest = {
           },
         },
         "required": [
+          "categories",
           "imageLogo",
           "login",
           "imageCart",
@@ -953,7 +971,7 @@ const manifest: DecoManifest = {
             "description": "Product suggestions displayed on search",
           },
           "suggestions": {
-            "$id": "ed6dd98378c4000f0975a28f1d78921b8e165be8",
+            "$id": "8d4ae3ade2168c42837ce1dfda9948c60fc311ae",
             "format": "live-function",
             "type": "string",
             "title": "Enable Top Search terms",
@@ -1553,7 +1571,7 @@ const manifest: DecoManifest = {
         "type": "object",
         "properties": {
           "data": {
-            "$id": "4745e1202484ea61e4cdd1a83ec4c56d9e4dce67",
+            "$id": "1f15a836acd2ecbefef6eaf34ebcff98e39811f3",
           },
         },
         "additionalProperties": true,
@@ -1586,7 +1604,74 @@ const manifest: DecoManifest = {
         "type": "object",
         "properties": {
           "data": {
-            "$id": "05ecb684cf4ee00e98171fdc45227df637e4804e",
+            "$id": "9ba29fcac079080c6f7cf16f40f91cf15a25d53f",
+          },
+        },
+        "additionalProperties": true,
+      },
+    },
+    "deco-sites/std/functions/vtexCategoryTree.ts": {
+      "inputSchema": {
+        "title": "Vtex Category Tree",
+        "type": "object",
+        "properties": {
+          "levels": {
+            "type": "number",
+            "title": "Levels",
+            "description": "number of categories levels to be returned",
+            "default": "2",
+          },
+          "categoriesOrder": {
+            "type": "array",
+            "items": {
+              "title": "CategoriesOrder",
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "title": "Name",
+                },
+                "hideCategory": {
+                  "type": [
+                    "boolean",
+                    "null",
+                  ],
+                  "title": "Hide Category",
+                },
+              },
+              "required": [
+                "name",
+              ],
+            },
+            "title": "Categories Order",
+            "description": "order of categories",
+          },
+        },
+        "required": [
+          "levels",
+          "categoriesOrder",
+        ],
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$id": "e7e597ea99f8e50061968a0ac8629b1537357428",
+          },
+        },
+        "additionalProperties": true,
+      },
+    },
+    "deco-sites/std/functions/vtexConfig.ts": {
+      "inputSchema": {
+        "type": "null",
+        "title": "Vtex Config",
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$id": "4a94f4ff0e8e4441f26651aaed22f0df82f38c93",
           },
         },
         "additionalProperties": true,
@@ -1681,7 +1766,7 @@ const manifest: DecoManifest = {
         "type": "object",
         "properties": {
           "data": {
-            "$id": "4745e1202484ea61e4cdd1a83ec4c56d9e4dce67",
+            "$id": "1f15a836acd2ecbefef6eaf34ebcff98e39811f3",
           },
         },
         "additionalProperties": true,
@@ -1737,7 +1822,7 @@ const manifest: DecoManifest = {
         "type": "object",
         "properties": {
           "data": {
-            "$id": "05ecb684cf4ee00e98171fdc45227df637e4804e",
+            "$id": "9ba29fcac079080c6f7cf16f40f91cf15a25d53f",
           },
         },
         "additionalProperties": true,
@@ -1822,6 +1907,13 @@ const manifest: DecoManifest = {
               "Collection ID or (Product Cluster id). For more info: https://developers.vtex.com/docs/api-reference/search-api#get-/api/catalog_system/pub/products/search .",
             "pattern": "\\d*",
           },
+          "categoryLevels": {
+            "type": [
+              "number",
+              "null",
+            ],
+            "title": "Category Levels",
+          },
         },
         "required": [
           "query",
@@ -1832,7 +1924,7 @@ const manifest: DecoManifest = {
         "type": "object",
         "properties": {
           "data": {
-            "$id": "4745e1202484ea61e4cdd1a83ec4c56d9e4dce67",
+            "$id": "1f15a836acd2ecbefef6eaf34ebcff98e39811f3",
           },
         },
         "additionalProperties": true,
@@ -1865,7 +1957,7 @@ const manifest: DecoManifest = {
         "type": "object",
         "properties": {
           "data": {
-            "$id": "05ecb684cf4ee00e98171fdc45227df637e4804e",
+            "$id": "9ba29fcac079080c6f7cf16f40f91cf15a25d53f",
           },
         },
         "additionalProperties": true,
@@ -1892,7 +1984,7 @@ const manifest: DecoManifest = {
         "type": "object",
         "properties": {
           "data": {
-            "$id": "ed6dd98378c4000f0975a28f1d78921b8e165be8",
+            "$id": "664f9b3b60b4a75294c340d8218b4ad76821fd58",
           },
         },
         "additionalProperties": true,
