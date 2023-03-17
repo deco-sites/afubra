@@ -6,10 +6,14 @@ import { EditableProps } from "../search/Searchbar.tsx";
 import Navbar from "./Navbar.tsx";
 
 export interface Props {
-  //TODO: Remove text later
-  text: string;
   categories: LoaderReturnType<Categories[] | null>;
   showAllCategories?: boolean;
+  imageLogo: Image;
+  login: Login;
+  imageCart: Image;
+  navItems: NavItem[];
+  searchbar: EditableProps;
+
 }
 export interface NavItem {
     label: string;
@@ -21,22 +25,14 @@ export interface Login {
     strongTextLogin: string;
     imageLogin: Image;
 }
-export interface Props {
-    imageLogo: Image;
-    login: Login;
-    imageCart: Image;
-    navItems: NavItem[];
-    searchbar: EditableProps;
-}
 
 
 const AutoHeader = (props: Props) => {
-  const { text, categories, showAllCategories, imageLogo, login, imageCart, navItems, searchbar } = props;
+  const { categories, showAllCategories, imageLogo, login, imageCart, navItems, searchbar } = props;
   return (
     <section>
-      {text}
-      <Menu categories={categories} allCategories={showAllCategories}/>
       <Navbar navItems={navItems} login={login} imageCart={imageCart} imageLogo={imageLogo} searchbar={searchbar} />
+      <Menu categories={categories} allCategories={showAllCategories}/>
     </section>
   );
 };

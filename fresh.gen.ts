@@ -121,6 +121,19 @@ const manifest: DecoManifest = {
         "title": " Auto Header",
         "type": "object",
         "properties": {
+          "categories": {
+            "$id": "e7e597ea99f8e50061968a0ac8629b1537357428",
+            "format": "live-function",
+            "type": "string",
+            "title": "Categories",
+          },
+          "showAllCategories": {
+            "type": [
+              "boolean",
+              "null",
+            ],
+            "title": "Show All Categories",
+          },
           "imageLogo": {
             "format": "image-uri",
             "type": "string",
@@ -230,22 +243,8 @@ const manifest: DecoManifest = {
             },
             "required": [],
           },
-          "categories": {
-            "$id": "e7e597ea99f8e50061968a0ac8629b1537357428",
-            "format": "live-function",
-            "type": "string",
-            "title": "Categories",
-          },
-          "showAllCategories": {
-            "type": [
-              "boolean",
-              "null",
-            ],
-            "title": "Show All Categories",
-          },
         },
         "required": [
-          "text",
           "categories",
           "imageLogo",
           "login",
