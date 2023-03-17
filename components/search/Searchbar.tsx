@@ -24,6 +24,12 @@ export interface EditableProps {
    */
   placeholder?: string;
   /**
+   * @title Placeholder no mobile
+   * @description Search bar default placeholder message on mobile
+   * @default What are you looking for?
+   */
+  placeholderMobile?: string;
+  /**
    * @title Page path
    * @description When user clicks on the search button, navigate it to
    * @default /s
@@ -51,7 +57,8 @@ export type Props = EditableProps & {
 };
 
 function Searchbar({
-  placeholder = "What are you looking for?",
+  placeholder = "Procure por qualquer informação como código, marca ou nome de produto",
+  placeholderMobile = "Procure por qualquer informação",
   action = "/s",
   name = "q",
   query,
@@ -60,31 +67,39 @@ function Searchbar({
 }: Props) {
   return (
     <>
-      <div class="px-4 mt-4">
+      <div class="lg:w-[677px] mt-[6px]">
         <form
           id="searchbar"
           action={action}
-          class="flex gap-3 p-2 border border-default"
+          class="flex gap-3 border(2 afubra-green-1) rounded-[10px] overflow-hidden"
         >
+          <input
+            class="hidden lg:block flex-grow outline-none h-[42px] text([15px] afubra-gray-1) pb-[2px] placeholder-afubra-green-2 pl-[1rem]"
+            name={name}
+            defaultValue={query}
+            placeholder={placeholder ? placeholder : placeholderMobile}
+          />
+          <input
+            class="block lg:hidden flex-grow outline-none h-[42px] text([15px] afubra-gray-1) pb-[2px] placeholder-afubra-green-2 pl-[1rem]"
+            name={name}
+            defaultValue={query}
+            placeholder={placeholderMobile ? placeholderMobile : placeholder}
+          />
           <Button
-            variant="icon"
+            variant="custom"
             aria-label="Search"
             htmlFor="searchbar"
+            class="lg:bg-afubra-green-2 text-white border-transparent flex pl-[10px] justify-center"
           >
             <Icon
-              class="text-subdued"
+              class="text-afubra-green-2 lg:text-[#fff]"
               id="MagnifyingGlass"
               width={20}
               height={20}
               strokeWidth={0.01}
             />
+            <span class="hidden lg:block text-[18px] font-bold pr-[10px]">BUSCAR</span>
           </Button>
-          <input
-            class="flex-grow outline-none"
-            name={name}
-            defaultValue={query}
-            placeholder={placeholder}
-          />
         </form>
       </div>
       <div class="flex flex-col divide-y divide-default">
