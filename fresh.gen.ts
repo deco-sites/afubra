@@ -117,13 +117,122 @@ const manifest: DecoManifest = {
         "title": " Auto Header",
         "type": "object",
         "properties": {
-          "text": {
+          "imageLogo": {
+            "format": "image-uri",
             "type": "string",
-            "title": "Text",
+            "title": "Image Logo",
+          },
+          "login": {
+            "title": "Login",
+            "type": "object",
+            "properties": {
+              "textLogin": {
+                "type": "string",
+                "title": "Text Login",
+              },
+              "strongTextLogin": {
+                "type": "string",
+                "title": "Strong Text Login",
+              },
+              "imageLogin": {
+                "format": "image-uri",
+                "type": "string",
+                "title": "Image Login",
+              },
+            },
+            "required": [
+              "textLogin",
+              "strongTextLogin",
+              "imageLogin",
+            ],
+          },
+          "imageCart": {
+            "format": "image-uri",
+            "type": "string",
+            "title": "Image Cart",
+          },
+          "navItems": {
+            "type": "array",
+            "items": {
+              "title": "NavItem",
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "title": "Label",
+                },
+                "href": {
+                  "type": "string",
+                  "title": "Href",
+                },
+              },
+              "required": [
+                "label",
+                "href",
+              ],
+            },
+            "title": "Nav Items",
+          },
+          "searchbar": {
+            "title": "Searchbar",
+            "type": "object",
+            "properties": {
+              "placeholder": {
+                "type": [
+                  "string",
+                  "null",
+                ],
+                "title": "Placeholder",
+                "description": "Search bar default placeholder message",
+                "default": "What are you looking for?",
+              },
+              "placeholderMobile": {
+                "type": [
+                  "string",
+                  "null",
+                ],
+                "title": "Placeholder no mobile",
+                "description":
+                  "Search bar default placeholder message on mobile",
+                "default": "What are you looking for?",
+              },
+              "action": {
+                "type": [
+                  "string",
+                  "null",
+                ],
+                "title": "Page path",
+                "description":
+                  "When user clicks on the search button, navigate it to",
+                "default": "/s",
+              },
+              "name": {
+                "type": [
+                  "string",
+                  "null",
+                ],
+                "title": "Term name",
+                "description":
+                  "Querystring param used when navigating the user",
+                "default": "q",
+              },
+              "query": {
+                "type": [
+                  "string",
+                  "null",
+                ],
+                "title": "Query",
+              },
+            },
+            "required": [],
           },
         },
         "required": [
-          "text",
+          "imageLogo",
+          "login",
+          "imageCart",
+          "navItems",
+          "searchbar",
         ],
       },
       "outputSchema": null,
@@ -709,6 +818,16 @@ const manifest: DecoManifest = {
                 ],
                 "title": "Placeholder",
                 "description": "Search bar default placeholder message",
+                "default": "What are you looking for?",
+              },
+              "placeholderMobile": {
+                "type": [
+                  "string",
+                  "null",
+                ],
+                "title": "Placeholder no mobile",
+                "description":
+                  "Search bar default placeholder message on mobile",
                 "default": "What are you looking for?",
               },
               "action": {

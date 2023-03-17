@@ -11,6 +11,10 @@ const options: Omit<Options, "selfURL"> = {
     extend: {
       colors: {
         "default": "#FFFFFF",
+        "afubra-green-1": "#7eb218",
+        "afubra-green-2": "#018247",
+        "afubra-gray-1": "#727273",
+        "afubra-gray-2": "#595959",
         "header": "#FFFFFF",
         "badge": "#8C3D3D", // shopping cart tem isso tambem
         "footer": "#003232",
@@ -20,7 +24,7 @@ const options: Omit<Options, "selfURL"> = {
         "hover-inverse": "rgba(255, 255, 255, 0.4)",
       },
       textColor: {
-        "default": "#161616",
+        "default": "#595959",
         "default-inverse": "#FFFFFF",
         "subdued": "#66736C",
         "subdued-inverse": "#C6C6C6",
@@ -81,7 +85,7 @@ const options: Omit<Options, "selfURL"> = {
       },
     },
     fontFamily: {
-      sans: ["Albert Sans", "sans-serif"],
+      sans: ["Roboto", "sans-serif"],
       serif: ["inherit", "serif"],
     },
     screens: {
