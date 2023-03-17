@@ -5,17 +5,18 @@ export interface Props {
   //TODO: Remove text later
   text: string;
   categories: LoaderReturnType<Categories[] | null>;
+  showAllCategories?: boolean;
 }
 
 
 
 const AutoHeader = (props: Props) => {
-  const { text, categories } = props;
+  const { text, categories, showAllCategories } = props;
   return (
-    <div>
+    <section>
       {text}
-      <Menu categories={categories}/>
-    </div>
+      <Menu categories={categories} allCategories={showAllCategories}/>
+    </section>
   );
 };
 

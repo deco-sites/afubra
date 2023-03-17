@@ -13,6 +13,7 @@ interface MenuItems {
 
 interface Props {
   categories: MenuItems[] | null;
+  allCategories?: boolean;
 }
 
 function Menu({ categories }: Props) {
